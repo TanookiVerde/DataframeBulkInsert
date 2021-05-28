@@ -17,6 +17,8 @@ Python class for bulk inserting into MySQL database, from `pandas.DataFrame` obj
 import mysql.connector
 import pandas as pd
 
+from df_bulk_insert import DataFrameBulkInsert
+
 # 1. Create DB Connection
 cnx = mysql.connector.connect(
     user='user', 
