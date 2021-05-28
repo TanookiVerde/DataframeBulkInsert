@@ -8,11 +8,16 @@ Python class for bulk inserting into MySQL database, from `pandas.DataFrame` obj
 
 # How to use
 
+- Suppose a table called `tb_user` with columns:
+    - `id (autoincrement)`
+    - `name`
+- The following code uses the data from a dataframe to bulk insert into the table:
+
 ```python
 import mysql.connector
 import pandas as pd
 
-# Create DB Connection
+# 1. Create DB Connection
 cnx = mysql.connector.connect(
     user='user', 
     password='password',
@@ -21,21 +26,22 @@ cnx = mysql.connector.connect(
     database='database'
 )
 
-# Create a DataFrame. Column names *must* match the ones in database.
+# 2. Create a DataFrame. Column names *must* match the ones in database.
 df = pd.DataFrame()
 df['descricao'] = ['D', 'E', 'F']
 
-# Create a instance of DataFrameBulkInsert
+# 3. Create a instance of DataFrameBulkInsert
 bulkInsert = DataFrameBulkInsert(
     table_name="dim_acao", 
     dataframe=df,
     db_cursor=cnx.cursor()
 )
 
-# Execute the insertion and returns the inserted ids (same order as dataframe)
+# 4. Execute the insertion and returns the inserted ids (same order as dataframe)
 inserted_ids = bulkInsert.bulk_insert()
 cnx.commit()
 
-# You can store the ids
+# 5. You can store the ids in the dataframe
 df['ids'] = inserted_ids
 ```
+- All input dataframe columns will be used to create the query. Their names must match the column names from the specified table.
