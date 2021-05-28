@@ -28,11 +28,11 @@ cnx = mysql.connector.connect(
 
 # 2. Create a DataFrame. Column names *must* match the ones in database.
 df = pd.DataFrame()
-df['descricao'] = ['D', 'E', 'F']
+df['name'] = ['John', 'Pedro', 'Hugh Mungus']
 
 # 3. Create a instance of DataFrameBulkInsert
 bulkInsert = DataFrameBulkInsert(
-    table_name="dim_acao", 
+    table_name="tb_user", 
     dataframe=df,
     db_cursor=cnx.cursor()
 )
