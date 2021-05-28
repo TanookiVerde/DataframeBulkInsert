@@ -21,7 +21,7 @@ cnx = mysql.connector.connect(
     database='database'
 )
 
-# Create a DataFrame
+# Create a DataFrame. Column names *must* match the ones in database.
 df = pd.DataFrame()
 df['descricao'] = ['D', 'E', 'F']
 
